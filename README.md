@@ -1,4 +1,4 @@
-# Intrst - AI-Powered Finance Web App
+# Finmentor- AI-Powered Finance Web App
 
 A comprehensive MERN stack personal finance application that gamifies money management through AI-powered insights, goal tracking, and financial challenges.
 
@@ -61,7 +61,7 @@ A comprehensive MERN stack personal finance application that gamifies money mana
 1. **Clone the repository**
    ```bash
    git clone <your-repo-url>
-   cd intrst
+   cd finmentor
    ```
 
 2. **Install backend dependencies**
@@ -85,9 +85,9 @@ A comprehensive MERN stack personal finance application that gamifies money mana
    PORT=3001
    
    # Database
-   MONGODB_URI=mongodb://localhost:27017/intrst
+   MONGODB_URI=mongodb://localhost:27017/finmentor
    # Or use MongoDB Atlas:
-   # MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/intrst
+   # MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/finmentor
    
    # JWT Secret (generate a secure random string)
    JWT_SECRET=your_jwt_secret_here_make_it_very_long_and_secure
@@ -254,7 +254,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For questions or support:
 - Create an issue on GitHub
-- Email: support@intrst.com (example)
 
 ## Roadmap
 
