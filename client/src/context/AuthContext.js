@@ -1,0 +1,175 @@
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+
+const AuthContext = createContext();
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const initAuth = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          // Set default auth header
+          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+          
+          // Verify token and get user data
+          const response = await axios.get('/api/auth/me');
+          console.log('Auth initialization - user data:', response.data.user);
+          setUser(response.data.user);
+        } catch (error) {
+          console.error('Token verification failed:', error);
+          localStorage.removeItem('token');
+          delete axios.defaults.headers.common['Authorization'];
+        }
+      }
+      setLoading(false);
+    };
+
+    initAuth();
+  }, []);
+
+  const login = async (email, password) => {
+    try {
+      const response = await axios.post('/api/auth/login', { email, password });
+      const { token, user } = response.data;
+      
+      localStorage.setItem('token', token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      setUser(user);
+      
+      toast.success('Login successful!');
+      return { success: true };
+    } catch (error) {
+      const message = error.response?.data?.message || 'Login failed';
+      toast.error(message);
+      return { success: false, error: message };
+    }
+  };
+
+  // context/AuthContext.jsx
+  const saveOnboarding = async (data) => {
+    try {
+      const res = await axios.put('/api/users/me/onboarding', data);
+      setUser(res.data.user);                 // refresh context so Dashboard/Advisor update
+      toast.success('Onboarding updated');
+      return { success: true };
+    } catch (err) {
+      const message = err.response?.data?.message || 'Failed to update onboarding';
+      toast.error(message);
+      return { success: false, error: message };
+    }
+  };
+
+
+  const register = async (userData) => {
+    try {
+      // No splitting needed anymore
+      const payload = {
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        email: userData.email,
+        password: userData.password,
+        acceptTerms: userData.acceptTerms // include if backend needs it
+      };
+
+      const response = await axios.post('/api/auth/register', payload);
+      const { token, user } = response.data;
+
+      localStorage.setItem('token', token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      setUser(user);
+
+      toast.success('Registration successful!');
+      return { success: true };
+    } catch (error) {
+      const message = error.response?.data?.message || 'Registration failed';
+      toast.error(message);
+      return { success: false, error: message };
+    }
+  };
+
+  const completeOnboarding = async (onboardingData) => {
+    try {
+      const response = await axios.post('/api/auth/onboarding', onboardingData);
+      console.log('Onboarding completion - user data:', response.data.user);
+      setUser(response.data.user);
+      
+      toast.success('Welcome to Intrst!');
+      return { success: true };
+    } catch (error) {
+      const message = error.response?.data?.message || 'Onboarding failed';
+      toast.error(message);
+      return { success: false, error: message };
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    delete axios.defaults.headers.common['Authorization'];
+    setUser(null);
+    toast.success('Logged out successfully');
+  };
+
+  const updateUser = (userData) => {
+    setUser(prev => ({ ...prev, ...userData }));
+  };
+
+  const saveProfile = async (updates) => {
+    try {
+      const safeUpdates = {
+        ...updates,
+        preferences: {
+          notifications: updates?.preferences?.notifications 
+            ?? user?.preferences?.notifications 
+            ?? {},
+          dashboard: updates?.preferences?.dashboard 
+            ?? user?.preferences?.dashboard 
+            ?? {},
+          ...updates?.preferences,
+        },
+      };
+  
+      // send updates
+      await axios.put('/api/users/profile', safeUpdates);
+  
+      // re-fetch full profile from backend
+      const refreshed = await axios.get('/api/users/profile');
+  
+      setUser((prev) => ({ ...prev, ...refreshed.data.profile }));
+  
+      toast.success('Profile updated successfully');
+      return { success: true, profile: refreshed.data.profile };
+    } catch (err) {
+      console.error('Save profile error:', err);
+      toast.error('Failed to update profile');
+      return { success: false };
+    }
+  };
+  
+  
+  
+
+  const value = { 
+    user, loading, login, register, completeOnboarding, logout, 
+    updateUser, saveOnboarding, saveProfile 
+  };
+
+
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
