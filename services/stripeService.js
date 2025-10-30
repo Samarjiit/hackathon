@@ -13,8 +13,8 @@ class StripeService {
   async createPaymentIntent(amount, metadata = {}) {
     try {
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: Math.round(amount * 100), // Convert to cents
-        currency: 'usd',
+        amount: Math.round(amount * 100), // Convert to smallest currency unit (paise)
+        currency: 'inr',
         metadata: {
           type: 'bet_stake',
           ...metadata
@@ -25,7 +25,7 @@ class StripeService {
         },
       });
 
-      console.log(`💳 Payment intent created: ${paymentIntent.id} for $${amount}`);
+  console.log(`💳 Payment intent created: ${paymentIntent.id} for ₹${amount}`);
       return paymentIntent;
 
     } catch (error) {
@@ -90,7 +90,7 @@ class StripeService {
     try {
       // In a real implementation, you'd need to set up Stripe Connect
       // For now, we'll simulate charity donation
-      console.log(`🏥 Simulated charity donation: $${amount} to ${charityAccountId}`);
+  console.log(`🏥 Simulated charity donation: ₹${amount} to ${charityAccountId}`);
       
       return {
         id: `transfer_${Date.now()}`,

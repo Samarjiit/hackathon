@@ -1,10 +1,10 @@
 Account Type,Institution,Account Name,Balance,Change (1M),Change (3M),Asset Class,Allocation %
-Investment,Fidelity,401k Account,$125430.50,+$5234.67,+$12450.23,Mixed,35.2%
-Investment,Vanguard,Roth IRA,$45670.25,+$2103.45,+$5678.90,Stocks,12.8%
-Cash,Chase Bank,Checking Account,$8450.75,+$1234.56,+$2567.89,Cash,2.4%
-Cash,Ally Bank,Savings Account,$25600.00,+$456.78,+$1234.56,Cash,7.2%
-Investment,E*TRADE,Brokerage Account,$67890.33,+$3456.78,+$8901.23,Mixed,19.1%
-Investment,Schwab,IRA Rollover,$34560.45,+$1678.90,+$4567.12,Conservative,9.7%
-Real Estate,Property,Primary Residence,$450000.00,+$2345.67,+$15678.90,Real Estate,12.6%
-Cash,Capital One,High Yield Savings,$15670.25,+$123.45,+$567.89,Cash,0.4%
-Investment,Betterment,Robo Advisor,$23450.60,+$1234.56,+$3456.78,Mixed,6.6%
+Investment,Fidelity,401k Account,₹10410731.50,+₹434477.61,+₹1033369.09,Mixed,35.2%
+Investment,Vanguard,Roth IRA,₹3790630.75,+₹174586.35,+₹471348.70,Stocks,12.8%
+Cash,Chase Bank,Checking Account,₹701412.25,+₹102468.48,+₹213134.87,Cash,2.4%
+Cash,Ally Bank,Savings Account,₹2124800.00,+₹37912.74,+₹102468.48,Cash,7.2%
+Investment,E*TRADE,Brokerage Account,₹5634897.39,+₹286912.74,+₹738802.09,Mixed,19.1%
+Investment,Schwab,IRA Rollover,₹2868517.35,+₹139348.70,+₹379070.96,Conservative,9.7%
+Real Estate,Property,Primary Residence,₹37350000.00,+₹194690.61,+₹1301348.70,Real Estate,12.6%
+Cash,Capital One,High Yield Savings,₹1300630.75,+₹10246.35,+₹47134.87,Cash,0.4%
+Investment,Betterment,Robo Advisor,₹1946399.80,+₹102468.48,+₹286912.74,Mixed,6.6%

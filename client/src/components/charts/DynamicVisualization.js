@@ -32,7 +32,7 @@ const DynamicVisualization = ({ selectedView, userData }) => {
         title: 'Net Worth Trends',
         data: generateNetWorthData(data),
         insights: [
-          'Net worth increased by $2,400 this quarter',
+          'Net worth increased by ₹1,99,200 this quarter',
           'Investment growth outpacing expenses',
           'Debt-to-income ratio improving'
         ]
@@ -53,7 +53,7 @@ const DynamicVisualization = ({ selectedView, userData }) => {
         data: generateSpendingData(data),
         insights: [
           'Food & dining expenses up 18% vs last month',
-          'Transportation costs reduced by $120',
+          'Transportation costs reduced by ₹9,960',
           'Entertainment spending within budget'
         ]
       }
@@ -65,21 +65,21 @@ const DynamicVisualization = ({ selectedView, userData }) => {
 
   const generateOverviewData = (data) => {
     return {
-      netWorth: data?.insights?.totalNetWorth || 45000,
-      investments: data?.insights?.totalInvestments || 32000,
-      savings: 15000,
-      debt: 8000
+      netWorth: data?.insights?.totalNetWorth || 3735000, // 45000 USD to INR
+      investments: data?.insights?.totalInvestments || 2656000, // 32000 USD to INR
+      savings: 1245000, // 15000 USD to INR
+      debt: 664000 // 8000 USD to INR
     };
   };
 
   const generateNetWorthData = (data) => {
     return [
-      { month: 'Jan', value: 40000 },
-      { month: 'Feb', value: 41200 },
-      { month: 'Mar', value: 42800 },
-      { month: 'Apr', value: 43500 },
-      { month: 'May', value: 45000 },
-      { month: 'Jun', value: 46200 }
+      { month: 'Jan', value: 3320000 }, // 40000 USD to INR
+      { month: 'Feb', value: 3419600 }, // 41200 USD to INR
+      { month: 'Mar', value: 3552400 }, // 42800 USD to INR
+      { month: 'Apr', value: 3610500 }, // 43500 USD to INR
+      { month: 'May', value: 3735000 }, // 45000 USD to INR
+      { month: 'Jun', value: 3834600 }  // 46200 USD to INR
     ];
   };
 
@@ -95,12 +95,12 @@ const DynamicVisualization = ({ selectedView, userData }) => {
 
   const generateSpendingData = (data) => {
     return [
-      { category: 'Housing', amount: 1800, color: '#EF4444' },
-      { category: 'Food', amount: 650, color: '#F59E0B' },
-      { category: 'Transportation', amount: 320, color: '#10B981' },
-      { category: 'Entertainment', amount: 280, color: '#3B82F6' },
-      { category: 'Healthcare', amount: 150, color: '#8B5CF6' },
-      { category: 'Other', amount: 200, color: '#6B7280' }
+      { category: 'Housing', amount: 149400, color: '#EF4444' }, // 1800 USD to INR
+      { category: 'Food', amount: 53950, color: '#F59E0B' }, // 650 USD to INR
+      { category: 'Transportation', amount: 26560, color: '#10B981' }, // 320 USD to INR
+      { category: 'Entertainment', amount: 23240, color: '#3B82F6' }, // 280 USD to INR
+      { category: 'Healthcare', amount: 12450, color: '#8B5CF6' }, // 150 USD to INR
+      { category: 'Other', amount: 16600, color: '#6B7280' } // 200 USD to INR
     ];
   };
 
@@ -137,25 +137,25 @@ const DynamicVisualization = ({ selectedView, userData }) => {
         <div className="bg-green-50 p-4 rounded-lg border border-green-200">
           <div className="text-lg font-semibold text-green-800">Net Worth</div>
           <div className="text-3xl font-bold text-green-900">
-            ${chartData.data.netWorth.toLocaleString()}
+            ₹{chartData.data.netWorth.toLocaleString('en-IN')}
           </div>
         </div>
         <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
           <div className="text-lg font-semibold text-blue-800">Investments</div>
           <div className="text-3xl font-bold text-blue-900">
-            ${chartData.data.investments.toLocaleString()}
+            ₹{chartData.data.investments.toLocaleString('en-IN')}
           </div>
         </div>
         <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
           <div className="text-lg font-semibold text-purple-800">Savings</div>
           <div className="text-3xl font-bold text-purple-900">
-            ${chartData.data.savings.toLocaleString()}
+            ₹{chartData.data.savings.toLocaleString('en-IN')}
           </div>
         </div>
         <div className="bg-red-50 p-4 rounded-lg border border-red-200">
           <div className="text-lg font-semibold text-red-800">Debt</div>
           <div className="text-3xl font-bold text-red-900">
-            ${chartData.data.debt.toLocaleString()}
+            ₹{chartData.data.debt.toLocaleString('en-IN')}
           </div>
         </div>
       </div>
@@ -170,8 +170,8 @@ const DynamicVisualization = ({ selectedView, userData }) => {
           <div key={index} className="flex flex-col items-center">
             <div 
               className="bg-blue-600 rounded-t-md mb-2 transition-all duration-500"
-              style={{ 
-                height: `${(point.value / 50000) * 200}px`,
+                style={{ 
+                height: `${(point.value / 4150000) * 200}px`, // Adjusted for INR values
                 width: '30px'
               }}
             ></div>
@@ -231,11 +231,11 @@ const DynamicVisualization = ({ selectedView, userData }) => {
                 className="h-6 rounded-full transition-all duration-1000"
                 style={{ 
                   backgroundColor: item.color,
-                  width: `${(item.amount / 2000) * 100}%`
+                  width: `${(item.amount / 166000) * 100}%` // Adjusted for INR values (2000 USD ≈ 166000 INR)
                 }}
               ></div>
               <div className="absolute inset-0 flex items-center justify-center text-xs font-medium text-white">
-                ${item.amount}
+                ₹{item.amount.toLocaleString('en-IN')}
               </div>
             </div>
           </div>

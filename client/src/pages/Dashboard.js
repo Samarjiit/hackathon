@@ -44,7 +44,7 @@ const Dashboard = () => {
     if (!showAmounts) return '****';
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'INR',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
@@ -157,7 +157,7 @@ const Dashboard = () => {
                 </h3>
                 <div className="flex space-x-2">
                   <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded">
-                    Income: {formatCurrency(metrics.monthlyIncome || 0)}
+                    Income: {formatCurrency(metrics.monthlyIncome || 0).replace('$', '₹')}
                   </span>
                   <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded">
                     Expenses: {formatCurrency(metrics.monthlyExpenses || 0)}

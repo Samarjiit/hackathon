@@ -236,8 +236,8 @@ const Step2 = ({ register, errors, watch }) => {
             Monthly Income (after taxes)
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <span className="text-gray-600">$</span>
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <span className="text-gray-600">₹</span>
             </div>
             <input
               {...register('monthlyIncome', { 
@@ -259,8 +259,8 @@ const Step2 = ({ register, errors, watch }) => {
             Monthly Expenses (estimated)
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <span className="text-gray-600">$</span>
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <span className="text-gray-600">₹</span>
             </div>
             <input
               {...register('monthlyExpenses', { 
@@ -282,8 +282,8 @@ const Step2 = ({ register, errors, watch }) => {
             Current Savings
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <span className="text-gray-600">$</span>
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <span className="text-gray-600">₹</span>
             </div>
             <input
               {...register('currentSavings', { 
@@ -305,8 +305,8 @@ const Step2 = ({ register, errors, watch }) => {
             Total Debt (if any)
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <span className="text-gray-600">$</span>
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <span className="text-gray-600">₹</span>
             </div>
             <input
               {...register('debt', { 
@@ -325,7 +325,7 @@ const Step2 = ({ register, errors, watch }) => {
         {/* Quick calculation */}
         {monthlyIncome && (
           <div className="p-3 border-2 border-black rounded-lg text-sm text-black font-body" style={{backgroundColor: '#98B8D6'}}>
-            <p>💡 Recommended monthly savings: ${Math.round(monthlyIncome * 0.2).toLocaleString()}</p>
+            <p>💡 Recommended monthly savings: ₹{Math.round(monthlyIncome * 0.2).toLocaleString()}</p>
             <p className="text-xs mt-1">Based on the 50/30/20 rule</p>
           </div>
         )}

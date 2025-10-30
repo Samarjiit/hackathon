@@ -39,9 +39,9 @@ const GoalsSidebar = () => {
   };
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'INR',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
@@ -202,8 +202,8 @@ const GoalCard = ({ goal, progress, formatCurrency, getTimeRemaining, onUpdate }
 
       <div className="mb-3">
         <div className="flex justify-between text-xs text-gray-600 mb-1">
-          <span>{formatCurrency(goal.currentAmount)}</span>
-          <span>{formatCurrency(goal.targetAmount)}</span>
+          <span>₹{goal.currentAmount}</span>
+          <span>₹{goal.targetAmount}</span>
         </div>
         
         <div className="w-full bg-gray-200 rounded-full h-2">

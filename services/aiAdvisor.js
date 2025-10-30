@@ -332,8 +332,8 @@ Return ONLY valid JSON in this format:
         data: {
           labels: formattedChartData.map((d) => d.label || "Unknown"),
           datasets: [
-            {
-              label: "Amount ($)",
+              {
+              label: "Amount (₹)",
               data: formattedChartData.map((d) => parseFloat(d.value) || 0),
               backgroundColor: [
                 "#FF6384",
@@ -373,11 +373,11 @@ Return ONLY valid JSON in this format:
             chartRecommendation.type === "pie"
               ? {}
               : {
-                  y: {
+                    y: {
                     beginAtZero: true,
                     title: {
                       display: true,
-                      text: "Amount ($)",
+                      text: "Amount (₹)",
                     },
                   },
                   x: {
@@ -923,7 +923,7 @@ Return ONLY a JSON array with NO Markdown fences of objects like:
               labels: formattedChartData.map((d) => d.label || "Unknown"),
               datasets: [
                 {
-                  label: "Amount ($)",
+                  label: "Amount (₹)",
                   data: formattedChartData.map((d) => parseFloat(d.value) || 0),
                   backgroundColor: [
                     "#3B82F6",
