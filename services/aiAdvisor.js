@@ -19,12 +19,16 @@ class AIFinancialAdvisor {
   initializeModels() {
     // Initialize OpenAI if API key is available
     if (process.env.OPENAI_API_KEY) {
-      this.models.openai = new ChatOpenAI({
-        modelName: "gpt-4-turbo-preview",
-        temperature: 0.3,
-        openAIApiKey: process.env.OPENAI_API_KEY,
-      })
-      console.log("✅ OpenAI model initialized")
+      try {
+        this.models.openai = new ChatOpenAI({
+          modelName: "gpt-3.5-turbo",
+          temperature: 0.3,
+          openAIApiKey: process.env.OPENAI_API_KEY,
+        })
+        console.log("✅ OpenAI model initialized")
+      } catch (error) {
+        console.error("❌ Failed to initialize OpenAI model:", error.message)
+      }
     }
 
     // Initialize Google AI if API key is available
