@@ -26,10 +26,10 @@ const testAISystem = async () => {
       lifeStage: 'single',
       primaryGoal: 'save-emergency',
       riskTolerance: 'moderate',
-      monthlyIncome: 4500,
-      monthlyExpenses: 3200,
-      currentSavings: 2500,
-      debt: 8000,
+      monthlyIncome: 373500, // 4500 USD to INR
+      monthlyExpenses: 265600, // 3200 USD to INR
+      currentSavings: 207500, // 2500 USD to INR
+      debt: 664000, // 8000 USD to INR
       investmentExperience: 'some',
       investmentTimeline: 'medium',
       communicationMethod: 'email'
@@ -45,12 +45,12 @@ const testAISystem = async () => {
     const chatResponse = await axios.post(
       'http://localhost:3002/api/advisor/chat',
       { 
-        message: "I have $8,000 in debt and want to pay it off faster. What's the best strategy for my situation?" 
+        message: "I have ₹6,64,000 in debt and want to pay it off faster. What's the best strategy for my situation?" 
       },
       { headers: { Authorization: `Bearer ${token}` } }
     );
     
-    console.log('   🎤 User Question: "I have $8,000 in debt and want to pay it off faster. What\'s the best strategy for my situation?"');
+    console.log('   🎤 User Question: "I have ₹6,64,000 in debt and want to pay it off faster. What\'s the best strategy for my situation?"');
     console.log('   🤖 AI Response:');
     console.log('   📝', chatResponse.data.response?.substring(0, 200) + '...');
     console.log('   💡 Key Insights:', chatResponse.data.insights?.slice(0, 2));
@@ -68,19 +68,19 @@ const testAISystem = async () => {
     console.log('   📊 AI-Generated Budget Plan:');
     console.log('   💵 Method:', budgetResponse.data.budget_method);
     if (budgetResponse.data.categories) {
-      console.log('   🏠 Needs:', `$${budgetResponse.data.categories.needs?.amount} (${budgetResponse.data.categories.needs?.percentage}%)`);
-      console.log('   🎉 Wants:', `$${budgetResponse.data.categories.wants?.amount} (${budgetResponse.data.categories.wants?.percentage}%)`);
-      console.log('   💰 Savings:', `$${budgetResponse.data.categories.savings?.amount} (${budgetResponse.data.categories.savings?.percentage}%)`);
+      console.log('   🏠 Needs:', `₹${budgetResponse.data.categories.needs?.amount.toLocaleString('en-IN')} (${budgetResponse.data.categories.needs?.percentage}%)`);
+      console.log('   🎉 Wants:', `₹${budgetResponse.data.categories.wants?.amount.toLocaleString('en-IN')} (${budgetResponse.data.categories.wants?.percentage}%)`);
+      console.log('   💰 Savings:', `₹${budgetResponse.data.categories.savings?.amount.toLocaleString('en-IN')} (${budgetResponse.data.categories.savings?.percentage}%)`);
     }
     
     // Add some sample transactions
     console.log('\n5. 💸 Adding sample transactions...');
     const sampleTransactions = [
-      { amount: -85, description: 'Grocery shopping', category: { primary: 'food' }, type: 'expense' },
-      { amount: -45, description: 'Gas station', category: { primary: 'transportation' }, type: 'expense' },
-      { amount: -120, description: 'Restaurant dinner', category: { primary: 'food' }, type: 'expense' },
-      { amount: -25, description: 'Netflix subscription', category: { primary: 'subscription' }, type: 'expense' },
-      { amount: 4500, description: 'Monthly salary', category: { primary: 'income' }, type: 'income' }
+      { amount: -7055, description: 'Grocery shopping', category: { primary: 'food' }, type: 'expense' }, // 85 USD to INR
+      { amount: -3735, description: 'Gas station', category: { primary: 'transportation' }, type: 'expense' }, // 45 USD to INR
+      { amount: -9960, description: 'Restaurant dinner', category: { primary: 'food' }, type: 'expense' }, // 120 USD to INR
+      { amount: -2075, description: 'Netflix subscription', category: { primary: 'subscription' }, type: 'expense' }, // 25 USD to INR
+      { amount: 373500, description: 'Monthly salary', category: { primary: 'income' }, type: 'income' } // 4500 USD to INR
     ];
     
     for (const transaction of sampleTransactions) {
@@ -111,7 +111,7 @@ const testAISystem = async () => {
         title: 'Emergency Fund',
         description: 'Build a 6-month emergency fund',
         category: 'emergency_fund',
-        targetAmount: 19200, // 6 months * $3200 expenses
+        targetAmount: 1593600, // 6 months * ₹265600 expenses (converted from 19200 USD)
         targetDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(), // 1 year
         priority: 'high'
       },
@@ -141,7 +141,7 @@ const testAISystem = async () => {
     
     console.log('   🎯 AI-Suggested Financial Challenges:');
     betSuggestions.data.recommended_bets?.forEach((bet, index) => {
-      console.log(`   ${index + 1}. ${bet.title} - $${bet.suggestedStake} stake`);
+      console.log(`   ${index + 1}. ${bet.title} - ₹${bet.suggestedStake.toLocaleString('en-IN')} stake`);
       console.log(`      📝 ${bet.description}`);
     });
     

@@ -59,7 +59,7 @@ const Betting = () => {
     if (!showAmounts) return '***';
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'INR',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
@@ -90,11 +90,11 @@ const Betting = () => {
     } catch (error) {
       console.error('Failed to fetch betting data:', error);
       // Fall back to mock data
-      const mockActiveBets = [
+        const mockActiveBets = [
         {
           id: 1,
           title: 'Emergency Fund Challenge',
-          description: 'Save $5,000 for emergency fund',
+          description: 'Save ₹5,000 for emergency fund',
           wager: 150,
           potentialPayout: 285,
           progress: 64,
@@ -211,7 +211,7 @@ const Betting = () => {
                     {/* Progress section */}
                     {targetValue && (
                       <div className="flex items-center justify-between text-xs text-black font-body mb-2">
-                        <span>${currentValue} / ${targetValue}</span>
+                        <span>₹{currentValue} / ₹{targetValue}</span>
                         <span>{daysLeft} days left</span>
                       </div>
                     )}
@@ -224,7 +224,7 @@ const Betting = () => {
                     </div>
                     
                     <div className="flex justify-between text-xs text-black font-body">
-                      <span>Stake: ${stakeAmount}</span>
+                      <span>Stake: ₹{stakeAmount}</span>
                       <span>Progress: {Math.round(progress)}%</span>
                     </div>
                   </div>
@@ -552,7 +552,7 @@ const CreateBetModal = ({ onClose, onSuccess }) => {
                   onChange={handleChange}
                   className="w-full px-3 py-2 text-sm border-2 border-black rounded-lg font-body focus:outline-none focus:ring-2 focus:ring-black text-black"
                   style={{ backgroundColor: 'white' }}
-                  placeholder="Save $1000 this month"
+                  placeholder="Save ₹1000 this month"
                   required
                 />
               </div>
@@ -575,7 +575,7 @@ const CreateBetModal = ({ onClose, onSuccess }) => {
 
               <div>
                 <label className="block text-sm font-medium text-black mb-1 font-body">
-                  Target Amount ($)
+                  Target Amount (₹)
                 </label>
                 <input
                   type="number"
@@ -593,7 +593,7 @@ const CreateBetModal = ({ onClose, onSuccess }) => {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-black mb-1 font-body">
-                    Stake ($)
+                    Stake (₹)
                   </label>
                   <input
                     type="number"
@@ -652,15 +652,15 @@ const CreateBetModal = ({ onClose, onSuccess }) => {
                 <div className="space-y-1 text-sm font-body">
                   <div className="flex justify-between">
                     <span>Stake Amount:</span>
-                    <span className="font-medium">${paymentIntent?.amount}</span>
+                    <span className="font-medium">₹{paymentIntent?.amount}</span>
                   </div>
                   <div className="flex justify-between text-gray-600">
                     <span>Processing Fee:</span>
-                    <span>$0</span>
+                    <span>₹0</span>
                   </div>
                   <div className="border-t border-black pt-1 flex justify-between font-medium">
                     <span>Total:</span>
-                    <span>${paymentIntent?.amount}</span>
+                    <span>₹{paymentIntent?.amount}</span>
                   </div>
                 </div>
               </div>
@@ -695,7 +695,7 @@ const CreateBetModal = ({ onClose, onSuccess }) => {
                   ) : (
                     <>
                       <CreditCard className="w-4 h-4 mr-2" />
-                      Pay ${paymentIntent?.amount}
+                      Pay ₹{paymentIntent?.amount}
                     </>
                   )}
                 </button>

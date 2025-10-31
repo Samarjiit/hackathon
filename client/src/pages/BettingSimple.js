@@ -44,7 +44,7 @@ const BettingSimple = () => {
       // Set sample quick bet options
       setQuickBets([
         {
-          title: "Save $500 this month",
+          title: "Save ₹500 this month",
           category: "savings",
           suggestedStake: 25,
           odds: "85%",
@@ -79,9 +79,9 @@ const BettingSimple = () => {
   };
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'INR',
       minimumFractionDigits: 0,
     }).format(amount);
   };
@@ -473,7 +473,7 @@ const CreateBetModal = ({ onClose, onSuccess }) => {
                   value={formData.title}
                   onChange={handleChange}
                   className="input-field"
-                  placeholder="Save $1000 this month"
+                  placeholder="Save ₹1000 this month"
                   required
                 />
               </div>
@@ -494,8 +494,8 @@ const CreateBetModal = ({ onClose, onSuccess }) => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Target Amount ($)
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Target Amount (₹)
                 </label>
                 <input
                   type="number"
@@ -512,7 +512,7 @@ const CreateBetModal = ({ onClose, onSuccess }) => {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Stake ($)
+                    Stake (₹)
                   </label>
                   <input
                     type="number"
@@ -567,15 +567,15 @@ const CreateBetModal = ({ onClose, onSuccess }) => {
                 <div className="space-y-1 text-sm">
                   <div className="flex justify-between">
                     <span>Stake Amount:</span>
-                    <span className="font-medium">${paymentIntent?.amount}</span>
+                    <span className="font-medium">₹{paymentIntent?.amount}</span>
                   </div>
                   <div className="flex justify-between text-gray-500">
                     <span>Processing Fee:</span>
-                    <span>$0</span>
+                    <span>₹0</span>
                   </div>
                   <div className="border-t pt-1 flex justify-between font-medium">
                     <span>Total:</span>
-                    <span>${paymentIntent?.amount}</span>
+                    <span>₹{paymentIntent?.amount}</span>
                   </div>
                 </div>
               </div>

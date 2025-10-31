@@ -418,7 +418,7 @@ const generateMockResponse = (message, user) => {
   const lowerMessage = message.toLowerCase();
   if (lowerMessage.includes('spend')) {
     return {
-      content: `I've analyzed your spending patterns over the past month. You're spending $${Math.round(Math.random() * 1000 + 2000)} monthly.`,
+      content: `I've analyzed your spending patterns over the past month. You're spending $${Math.round(Math.random() * 10000 + 20000)} monthly.`,
       insights: ['Dining expenses high', 'Transport costs decreased', 'Subscriptions could be optimized'],
       suggestions: ['Set up automatic savings', 'Review subscriptions', 'Meal prep weekends'],
       followUpQuestions: ['What % of income should I save?', 'How to reduce dining expenses?'],
@@ -427,7 +427,7 @@ const generateMockResponse = (message, user) => {
   }
   if (lowerMessage.includes('save')) {
     return {
-      content: `Based on your income of $${user?.financialProfile?.monthlyIncome || 4500}, aim to save $${Math.round((user?.financialProfile?.monthlyIncome || 4500) * 0.2)} monthly.`,
+      content: `Based on your income of $${user?.financialProfile?.monthlyIncome || 45000}, aim to save $${Math.round((user?.financialProfile?.monthlyIncome || 45000) * 0.2)} monthly.`,
       insights: ['Savings rate below 20%', 'Emergency fund should cover 6 months', 'High-yield account increases returns'],
       suggestions: ['Weekly auto transfers', 'Open high-yield savings', 'Optimize subscriptions'],
       followUpQuestions: ['Which high-yield accounts?', 'How much should my emergency fund be?']
